@@ -86,7 +86,7 @@ export function FiltersSection() {
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-              {FILTER_FEATURES.map((feature, index) => (
+              {FILTER_FEATURES.map((feature) => (
                 <Box
                   key={feature.label}
                   sx={{
@@ -111,18 +111,17 @@ export function FiltersSection() {
                     }
                   }}
                 >
-                  <Typography
+                  <Box
                     sx={{
-                      color: `${feature.accentColor}88`,
-                      fontSize: "1.4rem",
-                      fontWeight: 800,
-                      lineHeight: 1,
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      backgroundColor: feature.accentColor,
+                      mt: 0.75,
                       flexShrink: 0,
-                      minWidth: "2rem"
+                      boxShadow: `0 0 8px ${feature.accentColor}88`
                     }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </Typography>
+                  />
                   <Box>
                     <Typography
                       sx={{ color: "white", fontWeight: 700, fontSize: "0.95rem", mb: 0.5 }}
