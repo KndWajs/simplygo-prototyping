@@ -2,6 +2,7 @@ import { Box, Container, Typography } from "@mui/material"
 import { CitySelector } from "components/citySelector/citySelector"
 import { CtaButtons } from "components/ctaButtons/ctaButtons"
 import { QuickSearchBar } from "components/quickSearchBar/quickSearchBar"
+import { CategorySection } from "components/landingSections/categorySection"
 import { CATEGORIES } from "../../data/categories"
 import type { Metadata } from "next"
 
@@ -54,7 +55,7 @@ export default function Home() {
   return (
     <>
       <HeroImagePreload />
-      <style>{`body { background-color: #000; }`}</style>
+      <style>{`body { background-color: #050505; }`}</style>
       <Box
         component="section"
         sx={{
@@ -143,6 +144,7 @@ export default function Home() {
           <QuickSearchBar />
         </Container>
       </Box>
+      <CategorySection />
     </>
   )
 }
