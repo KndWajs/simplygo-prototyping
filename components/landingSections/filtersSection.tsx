@@ -3,7 +3,7 @@
 import { Box, Container, Typography } from "@mui/material"
 
 
-const SECTION_SCREENSHOT_SRC: string | undefined = "/screenshots/filters.png"
+const SECTION_SCREENSHOT_SRC: string | undefined = undefined
 
 const FILTER_FEATURES = [
   {

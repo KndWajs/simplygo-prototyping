@@ -3,7 +3,7 @@
 import { Box, Container, Typography } from "@mui/material"
 
 
-const SECTION_SCREENSHOT_SRC: string | undefined = undefined
+const SECTION_SCREENSHOT_SRC: string | undefined = "/screenshots/map.png"
 
 const MAP_FEATURES = [
   {
