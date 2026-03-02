@@ -1,28 +1,38 @@
 "use client"
 
+import EventIcon from "@mui/icons-material/Event"
+import DeckIcon from "@mui/icons-material/Deck"
 import { Box, Container, Typography } from "@mui/material"
 import Image from "next/image"
+import type { SvgIconComponent } from "@mui/icons-material"
 
 const SECTION_SCREENSHOT_SRC: string | undefined = undefined
 
-const SWITCH_OPTIONS = [
+interface SwitchOption {
+  label: string
+  description: string
+  accentColor: string
+  MuiIcon: SvgIconComponent | null
+}
+
+const SWITCH_OPTIONS: SwitchOption[] = [
   {
     label: "Wydarzenia",
     description: "Jednorazowe i cykliczne aktywności — koncerty, warsztaty, mecze.",
     accentColor: "#ff6b35",
-    iconSrc: "/event_ico_ev.png"
+    MuiIcon: EventIcon
   },
   {
     label: "Miejsca",
     description: "Stałe obiekty — kluby fitness, boiska, parki rozrywki, kina.",
     accentColor: "#ff8c5a",
-    iconSrc: "/event_ico_pl.png"
+    MuiIcon: DeckIcon
   },
   {
     label: "Wszystko",
     description: "Pełny widok — wszystko razem w jednym przeszukiwaniu.",
     accentColor: "#ffaa7a",
-    iconSrc: null
+    MuiIcon: null
   }
 ]
 
@@ -125,13 +135,9 @@ export function EventsPlacesSection() {
                       flexShrink: 0
                     }}
                   >
-                    {option.iconSrc && (
-                      <Image
-                        src={option.iconSrc}
-                        alt=""
-                        width={18}
-                        height={18}
-                        style={{ borderRadius: "4px" }}
+                  {option.MuiIcon && (
+                      <option.MuiIcon
+                        sx={{ fontSize: 16, color: option.accentColor }}
                       />
                     )}
                     <Typography
