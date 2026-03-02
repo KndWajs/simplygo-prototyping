@@ -1,7 +1,7 @@
 "use client"
 
 import { Box, Container, Typography } from "@mui/material"
-import Image from "next/image"
+
 
 const SECTION_SCREENSHOT_SRC: string | undefined = undefined
 
@@ -157,11 +157,10 @@ export function FiltersSection() {
             }}
           >
             {SECTION_SCREENSHOT_SRC ? (
-              <Image
+              <img
                 src={SECTION_SCREENSHOT_SRC}
                 alt="Podgląd filtrów i wyszukiwarki w aplikacji"
-                fill
-                style={{ objectFit: "cover", objectPosition: "top" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
               />
             ) : (
               <Typography
