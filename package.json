@@ -13,6 +13,13 @@
     "type-check": "tsc --noEmit",
     "check": "npm run format && npm run lint:fix && npm run type-check"
   },
+  "overrides": {
+    "models": {
+      "scripts": {
+        "postinstall": ""
+      }
+    }
+  },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.4",
     "@emotion/cache": "^11.14.0",
