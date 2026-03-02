@@ -7,9 +7,8 @@ const SECTION_SCREENSHOT_SRC: string | undefined = undefined
 
 const FILTER_FEATURES = [
   {
-    label: "Podkategorie",
-    description:
-      "Wybierz dokładnie to, czego szukasz — np. w Sporcie przełącz na Siłownię, Basen czy Bieganie.",
+    label: "Wyszukiwarka tekstowa",
+    description: "Wpisz nazwę, frazę lub słowo kluczowe i znajdź dokładnie to, co masz na myśli.",
     accentColor: "#ff6b35"
   },
   {
@@ -19,8 +18,9 @@ const FILTER_FEATURES = [
     accentColor: "#ff8c5a"
   },
   {
-    label: "Wyszukiwarka tekstowa",
-    description: "Wpisz nazwę, frazę lub słowo kluczowe i znajdź dokładnie to, co masz na myśli.",
+    label: "Podkategorie",
+    description:
+      "Wybierz dokładnie to, czego szukasz — np. w Sporcie przełącz na Siłownię, Basen czy Bieganie.",
     accentColor: "#ffaa7a"
   }
 ]
@@ -82,7 +82,7 @@ export function FiltersSection() {
                 mb: { xs: 4, md: 5 }
               }}
             >
-              Podkategorie, cechy i wyszukiwarka tekstowa — trzy sposoby, żeby trafić dokładnie na to, co chcesz robić.
+              Wyszukiwarka tekstowa, cechy i podkategorie — trzy sposoby, żeby trafić dokładnie na to, co chcesz robić.
             </Typography>
 
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
