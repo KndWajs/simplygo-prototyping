@@ -4,6 +4,8 @@ import { CtaButtons } from "components/ctaButtons/ctaButtons"
 import { QuickSearchBar } from "components/quickSearchBar/quickSearchBar"
 import { CategorySection } from "components/landingSections/categorySection"
 import { EventsPlacesSection } from "components/landingSections/eventsPlacesSection"
+import { FiltersSection } from "components/landingSections/filtersSection"
+import { MapSection } from "components/landingSections/mapSection"
 import { CATEGORIES } from "../../data/categories"
 import type { Metadata } from "next"
 
@@ -147,6 +149,8 @@ export default function Home() {
       </Box>
       <CategorySection />
       <EventsPlacesSection />
+      <FiltersSection />
+      <MapSection />
     </>
   )
 }
