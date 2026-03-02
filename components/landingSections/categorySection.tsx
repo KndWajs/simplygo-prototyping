@@ -221,14 +221,30 @@ export function CategorySection() {
               justifyContent: "center",
               position: "relative",
               flexShrink: 0,
-              width: { md: "44%" }
+              width: { md: "44%" },
+              boxShadow: "0 40px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,107,53,0.08)",
+              "&::after": {
+                content: '""',
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(to bottom, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.03) 70%, rgba(5,5,5,0.55) 100%)",
+                pointerEvents: "none",
+                zIndex: 1
+              }
             }}
           >
             {SECTION_SCREENSHOT_SRC ? (
               <img
                 src={SECTION_SCREENSHOT_SRC}
                 alt="Podgląd wyboru kategorii w aplikacji"
-                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "top",
+                  filter: "contrast(0.94) brightness(1.04)",
+                  display: "block"
+                }}
               />
             ) : (
               <Typography
