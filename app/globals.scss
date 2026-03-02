@@ -1,0 +1,101 @@
+@use "@styles/variables" as *;
+@use "@styles/colours" as *;
+
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  text-align: center;
+}
+
+.home-page {
+  max-width: 1250px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.desktop-hidden {
+  @media (min-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+.mobile-hidden {
+  @media (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-float infinite 3s ease-in-out;
+  }
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.App-link {
+  color: rgb(112, 76, 182);
+}
+
+@keyframes App-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.no-select {
+  -webkit-user-select: none; /* Safari, stare Chrome */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* stare Edge/IE */
+  user-select: none;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.button-dark-simple {
+  color: $neutral-800 !important;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $neutral-900 !important;
+    transition: color 0.3s ease;
+  }
+
+  &:disabled {
+    color: $neutral-200 !important;
+    cursor: not-allowed;
+  }
+}
+
+.subcategories-icons {
+  path {
+    stroke: $primary-500 !important;
+  }
+}

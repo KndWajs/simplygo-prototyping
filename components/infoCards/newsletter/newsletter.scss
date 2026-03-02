@@ -1,0 +1,12 @@
+@use "@styles/colours" as *;
+@use "@styles/variables" as *;
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 24px;
+  min-height: 280px;
+}

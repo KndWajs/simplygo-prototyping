@@ -1,0 +1,76 @@
+@use "@styles/variables" as *;
+
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.layout {
+  display: flex;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+  flex-direction: column;
+  min-height: calc(100vh - 64px);
+  position: relative;
+}
+
+.layout-menu {
+  z-index: 3;
+  position: relative;
+  width: 100%;
+  height: 56px;
+  max-height: 56px;
+  min-height: 56px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: #ffffff;
+  @media (max-width: $mobile-breakpoint) {
+    background-color: transparent;
+  }
+}
+
+.layout-menu-placeholder {
+  width: 100%;
+  min-height: 40px;
+}
+
+.layout-header {
+  position: relative;
+  // max-width: 1250px;
+}
+
+.layout-content {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+
+  // Force direct children to use 100% width
+  > * {
+    width: 100%;
+  }
+}
+
+.layout-footer {
+  padding: 16px;
+  // background: #f5f5f5;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #ffffff;
+
+  @media (max-width: $mobile-breakpoint) {
+    background-color: transparent;
+  }
+}

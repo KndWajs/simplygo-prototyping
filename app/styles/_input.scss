@@ -1,0 +1,128 @@
+@use "@styles/colours" as *;
+
+.dropdown-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.dropdown-select {
+  padding: 9px !important;
+  gap: 8px !important;
+
+  width: 85px;
+
+  background: $neutral-50 !important;
+  border-radius: 8px !important;
+  border: 2px solid $neutral-50 !important;
+}
+
+.dropdown-select div {
+  padding: 0px !important;
+}
+
+.dropdown-select-focus {
+  border: 2px solid $secondary-600 !important;
+}
+
+.dropdown-input {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.dropdown-indicators div {
+  padding: 0px !important;
+}
+
+.dropdown-menu-list {
+  padding: 16px;
+  box-shadow: 4px 12px 24px rgba(75, 60, 56, 0.12) !important;
+  border-radius: 12px !important;
+}
+
+.dropdown-option {
+  border-radius: 8px !important;
+}
+
+.dropdown-option.dropdown-option-selected {
+  background: $secondary-100 !important;
+  color: $neutral-900 !important;
+}
+
+.dropdown-option-focused {
+  background: $secondary-50 !important;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}
+
+.input-without-border input,
+.input-without-border input:focus,
+.input-without-border input:-webkit-autofill,
+.input-without-border input:-webkit-autofill:focus,
+.input-without-border textarea,
+.input-without-border textarea:focus,
+.input-without-border textarea:-webkit-autofill,
+.input-without-border textarea:-webkit-autofill:focus {
+  border: none !important;
+
+  background-color: transparent !important;
+  width: 100%;
+  outline: none !important;
+
+  -webkit-box-shadow: none;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.input-without-border input::placeholder {
+  color: #b09e87 !important;
+  font-weight: 400 !important;
+}
+
+input,
+input:focus,
+input:-webkit-autofill,
+input:-webkit-autofill:focus,
+textarea,
+textarea:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:focus {
+  outline: none !important;
+
+  /*/ / paragraph-regular*/
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  letter-spacing: 0 !important;
+
+  /*weight-medium */
+  font-weight: 500 !important;
+  color: #2a201e !important;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  width: 100%;
+
+  background: $neutral-50;
+  border-radius: 8px;
+  border: 2px solid $neutral-50;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #b09e87 !important;
+  font-weight: 400 !important;
+}
+
+.blue-border-focus:focus-within {
+  outline: 2px solid $secondary-600 !important;
+  box-shadow: 0px 0px 24px 0px #860ee214;
+}

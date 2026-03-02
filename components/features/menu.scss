@@ -1,0 +1,44 @@
+.menu-class {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+
+  .blur-bg {
+    // backdrop-filter: blur(10px);
+    // background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1250px;
+
+  .logo-img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    .top {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+    }
+    .bottom {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 32px;
+    }
+  }
+}

@@ -1,0 +1,32 @@
+@use "@styles/colours" as *;
+@use "@styles/gradients" as *;
+
+.notistack-MuiContent-success {
+  background: $gradient-black !important;
+  height: 48px;
+  padding: 12px;
+  box-sizing: border-box;
+
+  border-radius: 8px !important;
+  z-index: 20000;
+}
+
+.notistack-MuiContent-error {
+  background: $gradient-black !important;
+  height: 48px;
+  padding: 12px;
+  box-sizing: border-box;
+
+  border-radius: 8px !important;
+  z-index: 20000;
+}
+
+.notistack-MuiContent-info {
+  background: $gradient-black !important;
+  height: 48px;
+  padding: 12px;
+  box-sizing: border-box;
+
+  border-radius: 8px !important;
+  z-index: 20000;
+}

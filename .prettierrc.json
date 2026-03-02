@@ -1,0 +1,12 @@
+{
+  "semi": false,
+  "htmlWhitespaceSensitivity": "ignore",
+  "arrowParens": "avoid",
+  "tabWidth": 2,
+  "printWidth": 100,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "endOfLine": "auto",
+  "jsxBracketSameLine": false,
+  "bracketSameLine": false
+}

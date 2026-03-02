@@ -1,0 +1,101 @@
+@use "colours" as *;
+
+$gradient-main-on-dark: linear-gradient(
+  90deg,
+  $primary-350 0%,
+  $primary-500 35%,
+  $primary-500 70%,
+  $primary-450 100%
+);
+
+$gradient-main-on-white: linear-gradient(
+  90deg,
+  $primary-550 0%,
+  $primary-500 30%,
+  $primary-500 70%,
+  $primary-450 100%
+);
+
+$gradient-soft: linear-gradient(135deg, $primary-50 0%, $primary-100 100%);
+
+/* Orange Gradient */
+$gradient-orange: linear-gradient(to right, #ff690b, #f05006);
+
+/* Red Gradient */
+$gradient-red: linear-gradient(to right, #d50d00, #c73a07);
+
+$gradient-green: linear-gradient(to right, #96dfa6, #2c8d42);
+
+$gradient-black: linear-gradient(254.81deg, #574744 19.61%, #161312 88.33%);
+
+$gradient-ai: linear-gradient(
+  110.82deg,
+  #f3c9e2 1.13%,
+  #ec2f58 10.79%,
+  #ea104b 21.02%,
+  #95009d 33.52%,
+  #6702ff 48.3%,
+  #9607ff 61.37%,
+  #ed8075 75.01%,
+  #f3ab48 88.65%,
+  #f28e70 101.15%,
+  #f3c3d9 114.79%
+);
+$gradient-ai-border: linear-gradient(
+  160.63deg,
+  #f3c9e2 1.09%,
+  #ec2f58 9.49%,
+  #ea104b 18.4%,
+  #95009d 29.28%,
+  #6702ff 42.14%,
+  #9607ff 53.51%,
+  #ed8075 65.38%,
+  #f3ab48 77.25%,
+  #f28e70 88.13%,
+  #f3c3d9 100%
+);
+$gradient-td-request: linear-gradient(
+  -45deg,
+  #f3f2ee 0%,
+  #9c6540 35.5%,
+  #89461a 68.5%,
+  #f3f2ee 100%
+);
+
+.gradient-main-on-dark {
+  background: $gradient-main-on-dark;
+  background-clip: "text";
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-main-on-white {
+  background: $gradient-main-on-white;
+  background-clip: "text";
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-orange {
+  background: $gradient-orange;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-red {
+  background: $gradient-red;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-green {
+  background: $gradient-green;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-ai {
+  background: $gradient-ai;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(find C:\\\\Users\\\\kndwa\\\\Documents\\\\simplygo\\\\frontend_ssr\\\\app\\\\\\(site\\):*)",
+      "Bash(tail:*)",
+      "Bash(cd:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}
