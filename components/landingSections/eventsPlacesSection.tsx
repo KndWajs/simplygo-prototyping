@@ -9,17 +9,20 @@ const SWITCH_OPTIONS = [
   {
     label: "Wydarzenia",
     description: "Jednorazowe i cykliczne aktywności — koncerty, warsztaty, mecze.",
-    accentColor: "#ff6b35"
+    accentColor: "#ff6b35",
+    iconSrc: "/event_ico_ev.png"
   },
   {
     label: "Miejsca",
     description: "Stałe obiekty — kluby fitness, boiska, parki rozrywki, kina.",
-    accentColor: "#ff8c5a"
+    accentColor: "#ff8c5a",
+    iconSrc: "/event_ico_pl.png"
   },
   {
-    label: "Oba",
+    label: "Wszystko",
     description: "Pełny widok — wszystko razem w jednym przeszukiwaniu.",
-    accentColor: "#ffaa7a"
+    accentColor: "#ffaa7a",
+    iconSrc: null
   }
 ]
 
@@ -69,7 +72,7 @@ export function EventsPlacesSection() {
             >
               Wydarzenia, miejsca{" "}
               <Box component="span" sx={{ color: "#ff6b35" }}>
-                lub oba
+                lub wszystko
               </Box>
             </Typography>
             <Typography
@@ -113,6 +116,7 @@ export function EventsPlacesSection() {
                     sx={{
                       display: "inline-flex",
                       alignItems: "center",
+                      gap: 0.75,
                       px: 1.5,
                       py: 0.5,
                       borderRadius: "999px",
@@ -121,6 +125,15 @@ export function EventsPlacesSection() {
                       flexShrink: 0
                     }}
                   >
+                    {option.iconSrc && (
+                      <Image
+                        src={option.iconSrc}
+                        alt=""
+                        width={18}
+                        height={18}
+                        style={{ borderRadius: "4px" }}
+                      />
+                    )}
                     <Typography
                       sx={{
                         color: option.accentColor,
