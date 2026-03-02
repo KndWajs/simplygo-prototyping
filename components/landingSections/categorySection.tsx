@@ -11,13 +11,15 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useTransition } from "react"
 
+// Replace undefined with a path like "/screenshots/categories.jpg" when ready
+const SECTION_SCREENSHOT_SRC: string | undefined = undefined
+
 interface CategoryConfig {
   id: string
   label: string
   description: string
   iconSrc: string
   accentColor: string
-  screenshotSrc?: string
 }
 
 const CATEGORY_CONFIGS: CategoryConfig[] = [
@@ -94,14 +96,11 @@ function CategoryCard({
       }}
       className="no-select"
     >
-      {/* Header row: icon + title + arrow */}
       <Box
         sx={{
           display: "flex",
-          flexDirection: { xs: "row", md: "row" },
           alignItems: "center",
-          gap: 2,
-          mb: 2
+          gap: 2
         }}
       >
         <Image
@@ -151,51 +150,13 @@ function CategoryCard({
           </Typography>
         </Box>
       </Box>
-
-      {/* Screenshot placeholder */}
-      <Box
-        sx={{
-          mt: 1,
-          borderRadius: "12px",
-          overflow: "hidden",
-          border: `1px solid ${config.accentColor}33`,
-          backgroundColor: "rgba(255,255,255,0.03)",
-          aspectRatio: "16/9",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          position: "relative"
-        }}
-      >
-        {config.screenshotSrc ? (
-          <Image
-            src={config.screenshotSrc}
-            alt={`Zrzut ekranu - ${config.label}`}
-            fill
-            style={{ objectFit: "cover" }}
-          />
-        ) : (
-          <Typography
-            sx={{
-              color: `${config.accentColor}66`,
-              fontSize: "0.75rem",
-              fontWeight: 500,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              userSelect: "none"
-            }}
-          >
-            Zrzut ekranu
-          </Typography>
-        )}
-      </Box>
     </Card>
   )
 }
 
 export function CategorySection() {
   const router = useRouter()
-  const [pendingId, startTransition] = useTransition()
+  const [, startTransition] = useTransition()
 
   const buildCategoryUrl = (categoryId: string) => {
     const address = getAddressCookie()
@@ -230,6 +191,7 @@ export function CategorySection() {
       }}
     >
       <Container maxWidth="lg">
+        {/* Section heading */}
         <Box sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}>
           <Typography
             variant="overline"
@@ -272,11 +234,13 @@ export function CategorySection() {
           </Typography>
         </Box>
 
+        {/* Category cards */}
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
-            gap: { xs: 2, md: 3 }
+            gap: { xs: 2, md: 3 },
+            mb: { xs: 4, md: 6 }
           }}
         >
           {CATEGORY_CONFIGS.map((config) => (
@@ -287,6 +251,43 @@ export function CategorySection() {
               onClick={() => handleCategoryClick(config.id)}
             />
           ))}
+        </Box>
+
+        {/* Single section screenshot */}
+        <Box
+          sx={{
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid rgba(255, 107, 53, 0.2)",
+            backgroundColor: "rgba(255,255,255,0.03)",
+            aspectRatio: "16/9",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative"
+          }}
+        >
+          {SECTION_SCREENSHOT_SRC ? (
+            <Image
+              src={SECTION_SCREENSHOT_SRC}
+              alt="Podgląd wyboru kategorii w aplikacji"
+              fill
+              style={{ objectFit: "cover" }}
+            />
+          ) : (
+            <Typography
+              sx={{
+                color: "rgba(255, 107, 53, 0.4)",
+                fontSize: "0.75rem",
+                fontWeight: 500,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                userSelect: "none"
+              }}
+            >
+              Zrzut ekranu
+            </Typography>
+          )}
         </Box>
       </Container>
     </Box>
