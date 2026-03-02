@@ -11,8 +11,7 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { useTransition } from "react"
 
-// Replace undefined with a path like "/screenshots/categories.jpg" when ready
-const SECTION_SCREENSHOT_SRC: string | undefined = undefined
+const SECTION_SCREENSHOT_SRC: string | undefined = "/screenshots/categories.png"
 
 interface CategoryConfig {
   id: string
