@@ -1,8 +1,7 @@
 import { Box, Container, Typography } from "@mui/material"
 import { CitySelector } from "components/citySelector/citySelector"
-import { CtaButtons } from "components/ctaButtons/ctaButtons"
+import { CtaButtons, CategorySection } from "components/ctaButtons/ctaButtons"
 import { QuickSearchBar } from "components/quickSearchBar/quickSearchBar"
-import { CategorySection } from "components/categorySection/categorySection"
 import { CATEGORIES } from "../../data/categories"
 import type { Metadata } from "next"
 
