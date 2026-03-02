@@ -17,8 +17,6 @@ function HeroImagePreload() {
   )
 }
 
-export const dynamic = "force-static"
-
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://simplygo.pl"
 const HOME_TITLE = "Simplygo – Wydarzenia, miejsca i aktywności"
 const HOME_DESCRIPTION =
