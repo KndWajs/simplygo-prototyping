@@ -2,13 +2,46 @@
 
 import { Box, Card, Container, Typography } from "@mui/material"
 import { useRouter } from "next/navigation"
-import { getAddressCookie } from "models/services/cookies.service"
-import { serializeFilters } from "models/services/filters.service"
-import { DEFAULT_OCCURENCE_RANGE } from "models/OccurrenceDateRangeDto"
-import { OrderByDto } from "models/OrderByDto"
-import { DEFAULT_CITY } from "components/citySelector/citySelector"
 import { useTransition } from "react"
 import type { ReactNode } from "react"
+
+// ---------------------------------------------------------------------------
+// Minimal inline helpers – avoids importing from models/* which triggers
+// the graphquire rebuild crash in the sandbox environment.
+// ---------------------------------------------------------------------------
+
+const DEFAULT_CITY_NAME = "Szczecin"
+const DEFAULT_COORDINATES = { latitude: 53.43786715839242, longitude: 14.542767164110858 }
+
+function readAddressCookie(): { streetAddress: string; coordinates: { latitude: number; longitude: number } } | null {
+  if (typeof document === "undefined") return null
+  try {
+    const match = document.cookie.match(/(?:^|;\s*)sg_address=([^;]*)/)
+    if (!match) return null
+    return JSON.parse(decodeURIComponent(match[1]))
+  } catch {
+    return null
+  }
+}
+
+function buildCategoryUrl(categoryId: string): string {
+  const address = readAddressCookie()
+  const city = address?.streetAddress ?? DEFAULT_CITY_NAME
+  const coords = address?.coordinates ?? DEFAULT_COORDINATES
+  const params = new URLSearchParams()
+  params.set("regionCity", city)
+  params.set("regionCountry", "Poland")
+  params.set("coordinatesLatitude", String(coords.latitude))
+  params.set("coordinatesLongitude", String(coords.longitude))
+  params.set("orderBy", "Recommended")
+  params.set("dateRange", "ThisWeek")
+  params.set("occurrenceType", "Events")
+  params.set("pageNumber", "1")
+  params.set("pageSize", "10")
+  params.set("categoryIds", categoryId)
+  params.sort()
+  return `/wydarzenia?${params.toString()}`
+}
 
 // Inline SVGs to avoid importing @mui/icons-material in a second client boundary
 function TheaterSvg() {
@@ -132,24 +165,7 @@ function CategoryCard({ category, onClick, loading }: { category: Category; onCl
 
 export function CategorySection() {
   const router = useRouter()
-  const [pendingId, startTransition] = useTransition()
-
-  const buildCategoryUrl = (categoryId: string) => {
-    const address = getAddressCookie()
-    const city = address?.streetAddress ?? DEFAULT_CITY.label
-    const coords = address?.coordinates ?? DEFAULT_CITY.coordinates
-    const params = serializeFilters({
-      orderBy: OrderByDto.Recommended,
-      dateRange: DEFAULT_OCCURENCE_RANGE,
-      pageNumber: 1,
-      pageSize: 10,
-      region: { city, country: "Poland" },
-      coordinates: coords,
-      categoryIds: [categoryId]
-    })
-    params.sort()
-    return `/wydarzenia?${params.toString()}`
-  }
+  const [, startTransition] = useTransition()
 
   const handleCategoryClick = (categoryId: string) => {
     startTransition(() => {
