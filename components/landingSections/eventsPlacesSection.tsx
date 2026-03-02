@@ -178,11 +178,10 @@ export function EventsPlacesSection() {
             }}
           >
             {SECTION_SCREENSHOT_SRC ? (
-              <Image
+              <img
                 src={SECTION_SCREENSHOT_SRC}
                 alt="Podgląd przełącznika wydarzeń i miejsc w aplikacji"
-                fill
-                style={{ objectFit: "cover", objectPosition: "top" }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }}
               />
             ) : (
               <Typography
