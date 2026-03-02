@@ -3,7 +3,16 @@
 import EventIcon from "@mui/icons-material/Event"
 import DeckIcon from "@mui/icons-material/Deck"
 import FavoriteIcon from "@mui/icons-material/Favorite"
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import { Box, Container, Typography } from "@mui/material"
+import { DEFAULT_CITY } from "components/citySelector/citySelector"
+import { getAddressCookie } from "models/services/cookies.service"
+import { serializeFilters } from "models/services/filters.service"
+import { DEFAULT_OCCURENCE_RANGE } from "models/OccurrenceDateRangeDto"
+import { OrderByDto } from "models/OrderByDto"
+import { OccurrenceType } from "models/domainDtos"
+import { useRouter } from "next/navigation"
+import { useTransition } from "react"
 import type { SvgIconComponent } from "@mui/icons-material"
 
 const SECTION_SCREENSHOT_SRC: string | undefined = "/screenshots/events-places.png"
@@ -12,7 +21,8 @@ interface SwitchOption {
   label: string
   description: string
   accentColor: string
-  MuiIcon: SvgIconComponent | null
+  MuiIcon: SvgIconComponent
+  occurrenceType: OccurrenceType
 }
 
 const SWITCH_OPTIONS: SwitchOption[] = [
@@ -20,23 +30,51 @@ const SWITCH_OPTIONS: SwitchOption[] = [
     label: "Wydarzenia",
     description: "Jednorazowe i cykliczne aktywności — koncerty, warsztaty, mecze.",
     accentColor: "#ff6b35",
-    MuiIcon: EventIcon
+    MuiIcon: EventIcon,
+    occurrenceType: OccurrenceType.Events
   },
   {
     label: "Miejsca",
     description: "Stałe obiekty — kluby fitness, boiska, parki rozrywki, kina.",
     accentColor: "#ff8c5a",
-    MuiIcon: DeckIcon
+    MuiIcon: DeckIcon,
+    occurrenceType: OccurrenceType.Places
   },
   {
     label: "Wszystko",
     description: "Pełny widok — wszystko razem w jednym przeszukiwaniu.",
     accentColor: "#ffaa7a",
-    MuiIcon: FavoriteIcon
+    MuiIcon: FavoriteIcon,
+    occurrenceType: OccurrenceType.Both
   }
 ]
 
 export function EventsPlacesSection() {
+  const router = useRouter()
+  const [, startTransition] = useTransition()
+
+  const buildUrl = (occurrenceType: OccurrenceType) => {
+    const address = getAddressCookie()
+    const city = address?.streetAddress ?? DEFAULT_CITY.label
+    const coords = address?.coordinates ?? DEFAULT_CITY.coordinates
+    const params = serializeFilters({
+      orderBy: OrderByDto.Recommended,
+      dateRange: DEFAULT_OCCURENCE_RANGE,
+      pageNumber: 1,
+      pageSize: 10,
+      region: { city, country: "Poland" },
+      coordinates: coords,
+      occurrenceType
+    })
+    params.sort()
+    return `/wydarzenia?${params.toString()}`
+  }
+
+  const handleClick = (occurrenceType: OccurrenceType) => {
+    startTransition(() => {
+      router.push(buildUrl(occurrenceType))
+    })
+  }
   return (
     <Box
       component="section"
@@ -100,6 +138,7 @@ export function EventsPlacesSection() {
               {SWITCH_OPTIONS.map((option) => (
                 <Box
                   key={option.label}
+                  onClick={() => handleClick(option.occurrenceType)}
                   sx={{
                     padding: { xs: "16px 20px", md: "18px 24px" },
                     backgroundColor: "rgba(255, 255, 255, 0.04)",
@@ -110,6 +149,14 @@ export function EventsPlacesSection() {
                     gap: 2,
                     position: "relative",
                     overflow: "hidden",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    "&:hover": {
+                      backgroundColor: `${option.accentColor}18`,
+                      borderColor: `${option.accentColor}66`,
+                      transform: "translateX(4px)",
+                      boxShadow: `0 8px 24px ${option.accentColor}22`
+                    },
                     "&::before": {
                       content: '""',
                       position: "absolute",
@@ -135,9 +182,7 @@ export function EventsPlacesSection() {
                       flexShrink: 0
                     }}
                   >
-                  {option.MuiIcon && (
-                      <option.MuiIcon sx={{ fontSize: 16, color: option.accentColor }} />
-                    )}
+                    <option.MuiIcon sx={{ fontSize: 16, color: option.accentColor }} />
                     <Typography
                       sx={{
                         color: option.accentColor,
@@ -149,11 +194,10 @@ export function EventsPlacesSection() {
                       {option.label}
                     </Typography>
                   </Box>
-                  <Typography
-                    sx={{ color: "#9ca3af", fontSize: "0.85rem", lineHeight: 1.5 }}
-                  >
+                  <Typography sx={{ color: "#9ca3af", fontSize: "0.85rem", lineHeight: 1.5, flex: 1 }}>
                     {option.description}
                   </Typography>
+                  <ArrowForwardIcon sx={{ color: option.accentColor, fontSize: 18, opacity: 0.7, flexShrink: 0 }} />
                 </Box>
               ))}
             </Box>
