@@ -58,92 +58,46 @@ function CategoryCard({
     <Card
       onClick={onClick}
       sx={{
-        flex: 1,
-        minWidth: { xs: "100%", md: 0 },
-        padding: { xs: 3, md: 4 },
+        padding: { xs: 2.5, md: 3 },
         backgroundColor: "rgba(255, 255, 255, 0.05)",
         backdropFilter: "blur(12px)",
         border: "1px solid rgba(255, 255, 255, 0.08)",
-        borderRadius: "20px",
+        borderRadius: "16px",
         cursor: "pointer",
         transition: "all 0.3s ease",
         opacity: loading ? 0.6 : 1,
         position: "relative",
         overflow: "hidden",
-        "&::before": {
-          content: '""',
-          position: "absolute",
-          inset: 0,
-          borderRadius: "20px",
-          border: "1px solid transparent",
-          background: `linear-gradient(135deg, ${config.accentColor}33, transparent) border-box`,
-          WebkitMask: "linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "destination-out",
-          maskComposite: "exclude",
-          opacity: 0,
-          transition: "opacity 0.3s ease"
-        },
         "&:hover": {
           backgroundColor: `${config.accentColor}18`,
           borderColor: `${config.accentColor}66`,
-          transform: "translateY(-6px)",
-          boxShadow: `0 20px 40px ${config.accentColor}22`
-        },
-        "&:hover::before": {
-          opacity: 1
+          transform: "translateX(4px)",
+          boxShadow: `0 8px 24px ${config.accentColor}22`
         }
       }}
       className="no-select"
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: 2
-        }}
-      >
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
         <Image
           src={config.iconSrc}
           alt={config.label}
-          width={52}
-          height={52}
-          style={{ borderRadius: "12px", flexShrink: 0 }}
+          width={44}
+          height={44}
+          style={{ borderRadius: "10px", flexShrink: 0 }}
         />
-
         <Box sx={{ flex: 1 }}>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between"
-            }}
-          >
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <Typography
               variant="h5"
-              sx={{
-                fontWeight: 700,
-                color: "white",
-                fontSize: { xs: "1.25rem", md: "1.4rem" }
-              }}
+              sx={{ fontWeight: 700, color: "white", fontSize: { xs: "1.1rem", md: "1.2rem" } }}
             >
               {config.label}
             </Typography>
-            <ArrowForwardIcon
-              sx={{
-                color: config.accentColor,
-                fontSize: 20,
-                opacity: 0.7
-              }}
-            />
+            <ArrowForwardIcon sx={{ color: config.accentColor, fontSize: 18, opacity: 0.7 }} />
           </Box>
           <Typography
             variant="body2"
-            sx={{
-              color: "#9ca3af",
-              fontSize: { xs: "0.8rem", md: "0.85rem" },
-              lineHeight: 1.6,
-              mt: 0.5
-            }}
+            sx={{ color: "#9ca3af", fontSize: "0.82rem", lineHeight: 1.5, mt: 0.25 }}
           >
             {config.description}
           </Typography>
@@ -190,103 +144,108 @@ export function CategorySection() {
       }}
     >
       <Container maxWidth="lg">
-        {/* Section heading */}
-        <Box sx={{ textAlign: "center", mb: { xs: 6, md: 8 } }}>
-          <Typography
-            variant="overline"
-            sx={{
-              color: "#ff6b35",
-              letterSpacing: "0.15em",
-              fontWeight: 600,
-              fontSize: "0.75rem",
-              mb: 1.5,
-              display: "block"
-            }}
-          >
-            3 kategorie
-          </Typography>
-          <Typography
-            variant="h2"
-            sx={{
-              fontWeight: 700,
-              color: "white",
-              fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
-              lineHeight: 1.2,
-              mb: 2
-            }}
-          >
-            Wybierz{" "}
-            <Box component="span" sx={{ color: "#ff6b35" }}>
-              główną kategorię
-            </Box>
-          </Typography>
-          <Typography
-            sx={{
-              color: "#6b7280",
-              fontSize: { xs: "1rem", md: "1.1rem" },
-              maxWidth: "480px",
-              mx: "auto",
-              lineHeight: 1.7
-            }}
-          >
-            Znajdź aktywność dopasowaną do Twoich zainteresowań spośród setek dostępnych wydarzeń.
-          </Typography>
-        </Box>
-
-        {/* Category cards */}
+        {/* Two-column layout on desktop */}
         <Box
           sx={{
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
-            gap: { xs: 2, md: 3 },
-            mb: { xs: 4, md: 6 }
+            gap: { xs: 6, md: 8 },
+            alignItems: { md: "center" }
           }}
         >
-          {CATEGORY_CONFIGS.map((config) => (
-            <CategoryCard
-              key={config.id}
-              config={config}
-              loading={false}
-              onClick={() => handleCategoryClick(config.id)}
-            />
-          ))}
-        </Box>
-
-        {/* Single section screenshot */}
-        <Box
-          sx={{
-            borderRadius: "16px",
-            overflow: "hidden",
-            border: "1px solid rgba(255, 107, 53, 0.2)",
-            backgroundColor: "rgba(255,255,255,0.03)",
-            aspectRatio: "16/9",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative"
-          }}
-        >
-          {SECTION_SCREENSHOT_SRC ? (
-            <Image
-              src={SECTION_SCREENSHOT_SRC}
-              alt="Podgląd wyboru kategorii w aplikacji"
-              fill
-              style={{ objectFit: "cover" }}
-            />
-          ) : (
+          {/* Left: heading + cards */}
+          <Box sx={{ flex: 1 }}>
             <Typography
+              variant="overline"
               sx={{
-                color: "rgba(255, 107, 53, 0.4)",
+                color: "#ff6b35",
+                letterSpacing: "0.15em",
+                fontWeight: 600,
                 fontSize: "0.75rem",
-                fontWeight: 500,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
-                userSelect: "none"
+                mb: 1.5,
+                display: "block"
               }}
             >
-              Zrzut ekranu
+              3 kategorie
             </Typography>
-          )}
+            <Typography
+              variant="h2"
+              sx={{
+                fontWeight: 700,
+                color: "white",
+                fontSize: { xs: "2rem", sm: "2.5rem", md: "2.75rem" },
+                lineHeight: 1.2,
+                mb: 1.5
+              }}
+            >
+              Wybierz{" "}
+              <Box component="span" sx={{ color: "#ff6b35" }}>
+                główną kategorię
+              </Box>
+            </Typography>
+            <Typography
+              sx={{
+                color: "#6b7280",
+                fontSize: { xs: "1rem", md: "1rem" },
+                lineHeight: 1.7,
+                mb: { xs: 4, md: 5 }
+              }}
+            >
+              Znajdź aktywność dopasowaną do Twoich zainteresowań spośród setek dostępnych wydarzeń.
+            </Typography>
+
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {CATEGORY_CONFIGS.map((config) => (
+                <CategoryCard
+                  key={config.id}
+                  config={config}
+                  loading={false}
+                  onClick={() => handleCategoryClick(config.id)}
+                />
+              ))}
+            </Box>
+          </Box>
+
+          {/* Right: screenshot */}
+          <Box
+            sx={{
+              flex: 1,
+              borderRadius: "16px",
+              overflow: "hidden",
+              border: "1px solid rgba(255, 107, 53, 0.2)",
+              backgroundColor: "rgba(255,255,255,0.03)",
+              aspectRatio: { xs: "16/9", md: "9/16" },
+              maxHeight: { md: "520px" },
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
+              flexShrink: 0,
+              width: { md: "44%" }
+            }}
+          >
+            {SECTION_SCREENSHOT_SRC ? (
+              <Image
+                src={SECTION_SCREENSHOT_SRC}
+                alt="Podgląd wyboru kategorii w aplikacji"
+                fill
+                style={{ objectFit: "cover", objectPosition: "top" }}
+              />
+            ) : (
+              <Typography
+                sx={{
+                  color: "rgba(255, 107, 53, 0.4)",
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  userSelect: "none"
+                }}
+              >
+                Zrzut ekranu
+              </Typography>
+            )}
+          </Box>
         </Box>
       </Container>
     </Box>
