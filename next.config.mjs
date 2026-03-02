@@ -1,8 +1,5 @@
-import { createRequire } from "module"
 import path from "path"
 import process from "node:process"
-
-const require = createRequire(import.meta.url)
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -27,22 +24,6 @@ const nextConfig = {
     ]
   },
   webpack: (config) => {
-    // Resolve the RSC flight client entry loader using the project's own Next.js
-    // so the sandbox runner can find it regardless of its installed version.
-    try {
-      const nextDir = path.dirname(require.resolve("next/package.json"))
-      config.resolveLoader = config.resolveLoader || {}
-      config.resolveLoader.alias = {
-        ...(config.resolveLoader.alias || {}),
-        "next-flight-client-entry-loader": path.join(
-          nextDir,
-          "dist/build/webpack/loaders/next-flight-client-entry-loader.js"
-        )
-      }
-    } catch (_) {
-      // If resolution fails, continue without the alias
-    }
-
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       "@styles": path.resolve(process.cwd(), "app/styles"),
