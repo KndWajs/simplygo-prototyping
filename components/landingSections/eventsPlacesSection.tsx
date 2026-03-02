@@ -2,11 +2,11 @@
 
 import EventIcon from "@mui/icons-material/Event"
 import DeckIcon from "@mui/icons-material/Deck"
+import FavoriteIcon from "@mui/icons-material/Favorite"
 import { Box, Container, Typography } from "@mui/material"
-import Image from "next/image"
 import type { SvgIconComponent } from "@mui/icons-material"
 
-const SECTION_SCREENSHOT_SRC: string | undefined = undefined
+const SECTION_SCREENSHOT_SRC: string | undefined = "/screenshots/events-places.png"
 
 interface SwitchOption {
   label: string
@@ -32,7 +32,7 @@ const SWITCH_OPTIONS: SwitchOption[] = [
     label: "Wszystko",
     description: "Pełny widok — wszystko razem w jednym przeszukiwaniu.",
     accentColor: "#ffaa7a",
-    MuiIcon: null
+    MuiIcon: FavoriteIcon
   }
 ]
 
@@ -136,9 +136,7 @@ export function EventsPlacesSection() {
                     }}
                   >
                   {option.MuiIcon && (
-                      <option.MuiIcon
-                        sx={{ fontSize: 16, color: option.accentColor }}
-                      />
+                      <option.MuiIcon sx={{ fontSize: 16, color: option.accentColor }} />
                     )}
                     <Typography
                       sx={{
