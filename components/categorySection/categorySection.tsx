@@ -1,6 +1,7 @@
 "use client"
 
 import { Box, Card, Container, Typography } from "@mui/material"
+import type { SvgIconComponent } from "@mui/icons-material"
 import SportsIcon from "@mui/icons-material/SportsBasketball"
 import ChildCareIcon from "@mui/icons-material/ChildCare"
 import TheaterIcon from "@mui/icons-material/TheaterComedy"
@@ -11,14 +12,12 @@ import { DEFAULT_OCCURENCE_RANGE } from "models/OccurrenceDateRangeDto"
 import { OrderByDto } from "models/OrderByDto"
 import { DEFAULT_CITY } from "components/citySelector/citySelector"
 import { useTransition } from "react"
-import type { ReactNode } from "react"
 
 interface Category {
   id: string
   label: string
   description: string
-  icon: ReactNode
-  color: string
+  Icon: SvgIconComponent
 }
 
 const MAIN_CATEGORIES: Category[] = [
@@ -26,26 +25,24 @@ const MAIN_CATEGORIES: Category[] = [
     id: "1",
     label: "Rozrywka",
     description: "Koncerty, wystawy, festiwale, warsztaty i wiele więcej",
-    icon: <TheaterIcon sx={{ fontSize: { xs: 40, md: 52 } }} />,
-    color: "#ff6b35"
+    Icon: TheaterIcon
   },
   {
     id: "2",
     label: "Sport",
     description: "Zajęcia sportowe, siłownia, sporty wodne i drużynowe",
-    icon: <SportsIcon sx={{ fontSize: { xs: 40, md: 52 } }} />,
-    color: "#ff6b35"
+    Icon: SportsIcon
   },
   {
     id: "3",
     label: "Dla dzieci",
     description: "Edukacja, zabawa, zajęcia kreatywne i wydarzenia rodzinne",
-    icon: <ChildCareIcon sx={{ fontSize: { xs: 40, md: 52 } }} />,
-    color: "#ff6b35"
+    Icon: ChildCareIcon
   }
 ]
 
 function CategoryCard({ category, onClick, loading }: { category: Category; onClick: () => void; loading: boolean }) {
+  const { Icon } = category
   return (
     <Card
       onClick={onClick}
@@ -83,10 +80,10 @@ function CategoryCard({ category, onClick, loading }: { category: Category; onCl
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: category.color
+          color: "#ff6b35"
         }}
       >
-        {category.icon}
+        <Icon sx={{ fontSize: { xs: 40, md: 52 } }} />
       </Box>
       <Typography
         variant="h5"
