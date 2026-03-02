@@ -37,7 +37,7 @@ export function MapSection() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", md: "row" },
+            flexDirection: { xs: "column", md: "row-reverse" },
             gap: { xs: 6, md: 8 },
             alignItems: { md: "center" }
           }}
