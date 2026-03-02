@@ -18,7 +18,7 @@ const MAP_FEATURES = [
   },
   {
     label: "Twoja lokalizacja",
-    description: "Pozwól aplikacji znaleźć Cię automatycznie albo wybierz miasto ręcznie — mapa dopasuje się do Twojej okolicy.",
+    description: "Pozwól aplikacji znaleźć Cię automatycznie, wybierz miasto ręcznie albo wpisz dokładny adres — mapa dopasuje się do Twojej okolicy. Możesz też sortować wyniki po odległości od wskazanego miejsca.",
     accentColor: "#ffaa7a"
   }
 ]
